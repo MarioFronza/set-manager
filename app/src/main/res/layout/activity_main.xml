@@ -50,7 +50,7 @@
         android:background="@drawable/background_set_points"
         android:padding="32dp"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/tvSecondFirstSetPointsTotal"
+        app:layout_constraintEnd_toStartOf="@+id/tvSecondSetPointsTotal"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ivX"
         app:layout_constraintTop_toBottomOf="@+id/tvHour" />
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="@+id/tvFirstIncrementPoint" />
 
     <TextView
-        android:id="@+id/tvSecondFirstSetPointsTotal"
+        android:id="@+id/tvSecondSetPointsTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_set_points"
