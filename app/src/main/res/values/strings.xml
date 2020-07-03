@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SetManager</string>
+    <string name="cancel_button_text">cancelar</string>
+</resources>

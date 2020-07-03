@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E5E5"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tvFirstIncrementPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/background_set_points"
+        android:padding="32dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/ivX"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvFirstSetPointsTotal"
+        app:layout_constraintTop_toBottomOf="@+id/tvHour" />
+
+    <TextView
+        android:id="@+id/tvSecondIncrementPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/background_set_points"
+        android:padding="32dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvSecondFirstSetPointsTotal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivX"
+        app:layout_constraintTop_toBottomOf="@+id/tvHour" />
+
+    <TextView
+        android:id="@+id/tvFirstSetPointsTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_set_points"
+        android:padding="16dp"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFirstIncrementPoint" />
+
+    <TextView
+        android:id="@+id/tvSecondFirstSetPointsTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_set_points"
+        android:padding="16dp"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintTop_toTopOf="@+id/tvSecondIncrementPoint" />
+
+    <ImageButton
+        android:id="@+id/btnFirstIncrementPoint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_background"
+        android:padding="8dp"
+        android:src="@drawable/ic_action_name"
+        app:layout_constraintEnd_toEndOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintStart_toStartOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstIncrementPoint" />
+
+    <ImageButton
+        android:id="@+id/btnSecondIncrementPoint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_background"
+        android:padding="8dp"
+        android:src="@drawable/ic_action_name"
+        app:layout_constraintEnd_toEndOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintStart_toStartOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintTop_toBottomOf="@+id/tvSecondIncrementPoint" />
+
+    <ImageView
+        android:id="@+id/ivX"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintEnd_toStartOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintTop_toTopOf="@+id/tvFirstIncrementPoint"
+        app:srcCompat="@drawable/ic_action_x"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/tvFirstPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintEnd_toEndOf="@+id/tvFirstIncrementPoint"
+        app:layout_constraintStart_toStartOf="@+id/tvFirstIncrementPoint" />
+
+    <TextView
+        android:id="@+id/tvSecondPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintEnd_toEndOf="@+id/tvSecondIncrementPoint"
+        app:layout_constraintStart_toStartOf="@+id/tvSecondIncrementPoint" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background"
+        android:text="@string/cancel_button_text"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFirstIncrementPoint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
