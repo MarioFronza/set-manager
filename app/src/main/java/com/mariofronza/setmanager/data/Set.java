@@ -21,24 +21,12 @@ public class Set implements Serializable {
         return isFinal;
     }
 
-    public void setFinal(boolean aFinal) {
-        isFinal = aFinal;
-    }
-
     public int getFirstTeamPoints() {
         return firstTeamPoints;
     }
 
-    public void setFirstTeamPoints(int firstTeamPoints) {
-        this.firstTeamPoints = firstTeamPoints;
-    }
-
     public int getSecondTeamPoints() {
         return secondTeamPoints;
-    }
-
-    public void setSecondTeamPoints(int secondTeamPoints) {
-        this.secondTeamPoints = secondTeamPoints;
     }
 
     public String getFirstTeamName() {

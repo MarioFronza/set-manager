@@ -11,9 +11,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/Toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +91,8 @@
         android:src="@drawable/ic_action_name"
         app:layout_constraintEnd_toEndOf="@+id/tvFirstIncrementPoint"
         app:layout_constraintStart_toStartOf="@+id/tvFirstIncrementPoint"
-        app:layout_constraintTop_toBottomOf="@+id/tvFirstIncrementPoint" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstIncrementPoint"
+        android:contentDescription="TODO" />
 
     <ImageButton
         android:id="@+id/btnSecondIncrementPoint"
@@ -103,7 +104,8 @@
         android:src="@drawable/ic_action_name"
         app:layout_constraintEnd_toEndOf="@+id/tvSecondIncrementPoint"
         app:layout_constraintStart_toStartOf="@+id/tvSecondIncrementPoint"
-        app:layout_constraintTop_toBottomOf="@+id/tvSecondIncrementPoint" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSecondIncrementPoint"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/ivX"
@@ -115,7 +117,8 @@
         app:layout_constraintStart_toEndOf="@+id/tvFirstIncrementPoint"
         app:layout_constraintTop_toTopOf="@+id/tvFirstIncrementPoint"
         app:srcCompat="@drawable/ic_action_x"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/tvFirstPlayer"
@@ -155,6 +158,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

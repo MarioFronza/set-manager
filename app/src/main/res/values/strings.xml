@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">SetManager</string>
+    <string name="app_name">Set Manager</string>
     <string name="cancel_button_text">cancelar</string>
+    <string name="hour_text">Hora</string>
+    <string name="first_team_name_hint">Time 1</string>
+    <string name="second_team_name_hint">Time 2</string>
+    <string name="init_game_text">Iniciar jogo</string>
+    <string name="init_game_description">Preencha os campos abaixo</string>
+    <string name="new_game_text">Novo jogo</string>
 </resources>

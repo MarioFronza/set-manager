@@ -22,6 +22,7 @@ public class InitGameActivity extends AppCompatActivity {
     private EditText etHour;
     private EditText etFirstTeam;
     private EditText etSecondTeam;
+
     private Game game;
 
     @Override
@@ -38,12 +39,12 @@ public class InitGameActivity extends AppCompatActivity {
         btnInitGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validateFields();
+                validateFieldsAndCreateGame();
             }
         });
     }
 
-    private void validateFields() {
+    private void validateFieldsAndCreateGame() {
         String hourText = etHour.getText().toString();
         String firstTeamName = etFirstTeam.getText().toString();
         String secondTeamName = etSecondTeam.getText().toString();
@@ -51,24 +52,10 @@ public class InitGameActivity extends AppCompatActivity {
         if (hourText.isEmpty() || firstTeamName.isEmpty() || secondTeamName.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
         } else {
-            Team firstTeam = new Team(firstTeamName);
-            Team secondTeam = new Team(secondTeamName);
-            populateSetsAndCreateGame(hourText, firstTeam, secondTeam);
+            game = new Game(hourText, new Team(firstTeamName), new Team(secondTeamName));
+            game.createSets();
+            initGame();
         }
-    }
-
-    private void populateSetsAndCreateGame(String hourText, Team firstTeam, Team secondTeam) {
-        List<Set> sets = new ArrayList<>();
-
-        sets.add(new Set(false));
-        sets.add(new Set(false));
-        sets.add(new Set(false));
-        sets.add(new Set(false));
-        sets.add(new Set(true));
-
-        game = new Game(hourText, firstTeam, secondTeam, sets);
-
-        initGame();
     }
 
     private void initGame() {
@@ -76,5 +63,6 @@ public class InitGameActivity extends AppCompatActivity {
         intent.putExtra("game", game);
         startActivity(intent);
     }
+
 
 }

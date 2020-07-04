@@ -1,6 +1,7 @@
 package com.mariofronza.setmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private List<Set> sets;
     private GameController gameController;
 
-    private RecyclerView recyclerView;
     private SetAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +47,17 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         game = (Game) getIntent().getSerializableExtra("game");
         sets = new ArrayList<>();
+
         gameController = new GameController(game);
         gameController.addObserver(this);
 
         Button btnCancel = findViewById(R.id.btnCancel);
         ImageButton btnFirstIncrementPoint = findViewById(R.id.btnFirstIncrementPoint);
         ImageButton btnSecondIncrementPoint = findViewById(R.id.btnSecondIncrementPoint);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
 
         tvHour = findViewById(R.id.tvHour);
         tvFirstPlayer = findViewById(R.id.tvFirstPlayer);
@@ -63,14 +67,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
         tvFirstSetPointsTotal = findViewById(R.id.tvFirstSetPointsTotal);
         tvSecondSetPointsTotal = findViewById(R.id.tvSecondSetPointsTotal);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SetAdapter(sets);
         recyclerView.setAdapter(adapter);
 
-        initGameComponents();
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,10 +93,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 gameController.incrementSecondTeamPoint();
             }
         });
-    }
 
-    private void goToInitGameActivity() {
-        startActivity(new Intent(this, InitGameActivity.class));
+        initGameComponents();
     }
 
     private void initGameComponents() {
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         tvFirstSetPointsTotal.setText("0");
         tvSecondSetPointsTotal.setText("0");
     }
+
 
     @Override
     public void updateFirstTeamPoint(int firstTeamPoints) {
@@ -148,7 +149,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
         startActivity(intent);
     }
 
-    public void showToastMessage(String message) {
+    private void goToInitGameActivity() {
+        startActivity(new Intent(this, InitGameActivity.class));
+    }
+
+    private void showToastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }

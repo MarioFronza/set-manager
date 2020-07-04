@@ -10,15 +10,11 @@ import java.util.List;
 
 public class GameController {
 
-    private final int TOTAL_NORMAL_SET_POINTS = 25;
-    private final int TOTAL_FINAL_SET_POINTS = 15;
-
-    private Game game;
-    private int totalSetsFirstTeam;
-    private int totalSetsSecondTeam;
-    private Set currentSet;
-
-    private List<Observer> observerList;
+    protected Game game;
+    protected int totalSetsFirstTeam;
+    protected int totalSetsSecondTeam;
+    protected Set currentSet;
+    protected List<Observer> observerList;
 
     public GameController(Game game) {
         this.game = game;
@@ -43,7 +39,7 @@ public class GameController {
     }
 
     private void verifyWinner() {
-        int totalSetPoints = !currentSet.isFinal() ? TOTAL_NORMAL_SET_POINTS : TOTAL_FINAL_SET_POINTS;
+        int totalSetPoints = !currentSet.isFinal() ? 25 : 15;
         int firstTeamPoints = currentSet.getFirstTeamPoints();
         int secondTeamPoints = currentSet.getSecondTeamPoints();
 
@@ -62,16 +58,16 @@ public class GameController {
         }
     }
 
-    private void newSet(Team team) {
+    private void newSet(Team winnerTeam) {
         if (!currentSet.isFinal() && totalSetsFirstTeam < 3 && totalSetsSecondTeam < 3) {
             currentSet.setFirstTeamName(game.getFirstTeam().getName());
             currentSet.setSecondTeamName(game.getSecondTeam().getName());
-            currentSet.setWinnerName(team.getName());
+            currentSet.setWinnerName(winnerTeam.getName());
             notifyNewSetPast(currentSet);
             game.removeSet();
             currentSet = game.getCurrentSet();
         } else {
-            notifyGameOver(team);
+            notifyGameOver(winnerTeam);
         }
     }
 
@@ -105,12 +101,10 @@ public class GameController {
         }
     }
 
-
     private void notifyGameOver(Team winner) {
         for (Observer observer : observerList) {
             observer.gameOver(winner);
         }
     }
-
 
 }

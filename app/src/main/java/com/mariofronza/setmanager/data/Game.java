@@ -1,6 +1,7 @@
 package com.mariofronza.setmanager.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable {
@@ -10,51 +11,39 @@ public class Game implements Serializable {
     private Team secondTeam;
     private List<Set> sets;
 
-    public Game(String hour, Team firstTeam, Team secondTeam, List<Set> sets) {
+    public Game(String hour, Team firstTeam, Team secondTeam) {
         this.hour = hour;
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
-        this.sets = sets;
+        this.sets = new ArrayList<>();
     }
 
     public String getHour() {
         return hour;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
     public Team getFirstTeam() {
         return firstTeam;
-    }
-
-    public void setFirstTeam(Team firstTeam) {
-        this.firstTeam = firstTeam;
     }
 
     public Team getSecondTeam() {
         return secondTeam;
     }
 
-    public void setSecondTeam(Team secondTeam) {
-        this.secondTeam = secondTeam;
-    }
-
-    public List<Set> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<Set> sets) {
-        this.sets = sets;
+    public void createSets() {
+        sets.add(new Set(false));
+        sets.add(new Set(false));
+        sets.add(new Set(false));
+        sets.add(new Set(false));
+        sets.add(new Set(true));
     }
 
     public Set getCurrentSet() {
-        return this.sets.get(0);
+        return sets.get(0);
     }
 
     public void removeSet() {
-        this.sets.remove(0);
+        sets.remove(0);
     }
 
 }
