@@ -10,6 +10,9 @@ import java.util.List;
 
 public class GameController {
 
+    private final int TOTAL_NORMAL_SET_POINTS = 25;
+    private final int TOTAL_FINAL_SET_POINTS = 15;
+
     private Game game;
     private int totalSetsFirstTeam;
     private int totalSetsSecondTeam;
@@ -19,7 +22,6 @@ public class GameController {
 
     public GameController(Game game) {
         this.game = game;
-
         this.currentSet = game.getCurrentSet();
         this.observerList = new ArrayList<>();
     }
@@ -27,7 +29,6 @@ public class GameController {
     void addObserver(Observer observer) {
         this.observerList.add(observer);
     }
-
 
     public void incrementFirstTeamPoint() {
         currentSet.incrementFirstTeamPoint();
@@ -42,7 +43,7 @@ public class GameController {
     }
 
     private void verifyWinner() {
-        int totalSetPoints = !currentSet.isFinal() ? 25 : 15;
+        int totalSetPoints = !currentSet.isFinal() ? TOTAL_NORMAL_SET_POINTS : TOTAL_FINAL_SET_POINTS;
         int firstTeamPoints = currentSet.getFirstTeamPoints();
         int secondTeamPoints = currentSet.getSecondTeamPoints();
 
@@ -63,10 +64,12 @@ public class GameController {
 
     private void newSet(Team team) {
         if (!currentSet.isFinal() && totalSetsFirstTeam < 3 && totalSetsSecondTeam < 3) {
+            currentSet.setFirstTeamName(game.getFirstTeam().getName());
+            currentSet.setSecondTeamName(game.getSecondTeam().getName());
+            currentSet.setWinnerName(team.getName());
+            notifyNewSetPast(currentSet);
             game.removeSet();
             currentSet = game.getCurrentSet();
-            notifyUpdateFirstTeamPoint();
-            notifyUpdateSecondTeamPoint();
         } else {
             notifyGameOver(team);
         }
@@ -95,6 +98,13 @@ public class GameController {
             observer.secondTeamWon(totalSetsSecondTeam);
         }
     }
+
+    private void notifyNewSetPast(Set pastSet) {
+        for (Observer observer : observerList) {
+            observer.addNewPastSet(pastSet);
+        }
+    }
+
 
     private void notifyGameOver(Team winner) {
         for (Observer observer : observerList) {

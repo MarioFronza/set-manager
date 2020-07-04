@@ -1,6 +1,8 @@
 package com.mariofronza.setmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +12,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mariofronza.setmanager.adapter.SetAdapter;
 import com.mariofronza.setmanager.data.Game;
+import com.mariofronza.setmanager.data.Set;
 import com.mariofronza.setmanager.data.Team;
 import com.mariofronza.setmanager.observer.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Observer {
 
@@ -25,7 +32,12 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private TextView tvSecondSetPointsTotal;
 
     private Game game;
+    private List<Set> sets;
     private GameController gameController;
+
+    private RecyclerView recyclerView;
+    private SetAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         setContentView(R.layout.activity_main);
 
         game = (Game) getIntent().getSerializableExtra("game");
+        sets = new ArrayList<>();
         gameController = new GameController(game);
         gameController.addObserver(this);
 
@@ -47,6 +60,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
         tvSecondIncrementPoint = findViewById(R.id.tvSecondIncrementPoint);
         tvFirstSetPointsTotal = findViewById(R.id.tvFirstSetPointsTotal);
         tvSecondSetPointsTotal = findViewById(R.id.tvSecondSetPointsTotal);
+
+        recyclerView = findViewById(R.id.recyclerView);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new SetAdapter(sets);
+        recyclerView.setAdapter(adapter);
 
         initGameComponents();
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -97,17 +117,31 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void firstTeamWon(int firstSetPoints) {
+        showToastMessage("O time " + game.getFirstTeam().getName() + " venceu o set!");
         tvFirstSetPointsTotal.setText(Integer.toString(firstSetPoints));
     }
 
     @Override
     public void secondTeamWon(int secondSetPoints) {
+        showToastMessage("O time " + game.getSecondTeam().getName() + " venceu o set!");
         tvSecondSetPointsTotal.setText(Integer.toString(secondSetPoints));
     }
 
     @Override
+    public void addNewPastSet(Set set) {
+        tvFirstIncrementPoint.setText("0");
+        tvSecondIncrementPoint.setText("0");
+        sets.add(set);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void gameOver(Team winner) {
-        Toast.makeText(this, "O time " + winner.getName() + " venceu!", Toast.LENGTH_SHORT).show();
+        showToastMessage("O time " + winner.getName() + " venceu!");
         goToInitGameActivity();
+    }
+
+    public void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

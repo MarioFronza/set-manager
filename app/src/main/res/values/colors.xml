@@ -3,4 +3,6 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#FF872C</color>
+    <color name="winnerColor">#12A454</color>
+    <color name="loserColor">#E83F5B</color>
 </resources>

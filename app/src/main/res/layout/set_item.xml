@@ -14,6 +14,7 @@
         android:layout_height="0dp"
         android:background="#12A454"
         android:gravity="center"
+        android:text="Mário"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvSetFirstPlayerPoints"
