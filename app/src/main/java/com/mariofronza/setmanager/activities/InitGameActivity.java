@@ -1,4 +1,4 @@
-package com.mariofronza.setmanager;
+package com.mariofronza.setmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mariofronza.setmanager.R;
 import com.mariofronza.setmanager.data.Game;
 import com.mariofronza.setmanager.data.Set;
 import com.mariofronza.setmanager.data.Team;

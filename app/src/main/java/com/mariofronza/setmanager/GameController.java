@@ -26,7 +26,7 @@ public class GameController {
         this.observerList = new ArrayList<>();
     }
 
-    void addObserver(Observer observer) {
+    public void addObserver(Observer observer) {
         this.observerList.add(observer);
     }
 

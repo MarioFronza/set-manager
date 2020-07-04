@@ -1,4 +1,4 @@
-package com.mariofronza.setmanager;
+package com.mariofronza.setmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mariofronza.setmanager.GameController;
+import com.mariofronza.setmanager.R;
 import com.mariofronza.setmanager.adapter.SetAdapter;
 import com.mariofronza.setmanager.data.Game;
 import com.mariofronza.setmanager.data.Set;
@@ -137,8 +139,13 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     @Override
     public void gameOver(Team winner) {
-        showToastMessage("O time " + winner.getName() + " venceu!");
-        goToInitGameActivity();
+        goToWinnerActivity(winner.getName());
+    }
+
+    private void goToWinnerActivity(String winnerName) {
+        Intent intent = new Intent(this, WinnerActivity.class);
+        intent.putExtra("winnerName", winnerName);
+        startActivity(intent);
     }
 
     public void showToastMessage(String message) {
