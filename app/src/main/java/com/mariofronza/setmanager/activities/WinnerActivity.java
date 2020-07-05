@@ -27,7 +27,7 @@ public class WinnerActivity extends AppCompatActivity {
         tvWinnerName = findViewById(R.id.tvWinnerName);
         btnRestartGame = findViewById(R.id.btnRestartGame);
 
-        tvWinnerName.setText("O Time " + winnerName + " Venceu o Jogo");
+        tvWinnerName.setText("O Time " + winnerName + " venceu o jogo");
 
         btnRestartGame.setOnClickListener(new View.OnClickListener() {
             @Override
